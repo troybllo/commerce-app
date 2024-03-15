@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="flex flex-col p-6 gap-5">
       <div className="flex  bg-white rounded w-full p-10 items-start h-30">
-        <Logo />
+        <Logo color={true} />
       </div>
       <div className="mt-40">
         <div className="flex flex-row">
@@ -19,7 +19,7 @@ export default function Home() {
         <div className=" flex mt-3 flex-col w-1/6 gap-6">
           <Link
             className="flex rounded-lg border-white border-2  p-4 "
-            href="/(overview)"
+            href="/dashboard"
           >
             <p>Catalog</p>
             <ButtonIcon />
