@@ -6,7 +6,9 @@ export default function NavBar() {
   return (
     <div className="flex flex-row justify-between p-4 items-center">
       <div className="flex flex-row items-center gap-3">
-        <Logo color={false} />
+        <Link href="/">
+          <Logo color={false} />
+        </Link>
         <Link href={""}>All</Link>
         <Link href={""}>Kids</Link>
         <Link href={""}>Accesories</Link>
