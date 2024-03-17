@@ -1,38 +1,17 @@
-const products = [
-  { id: 1, name: "Shirt-1", image: "", price: 50, category: "Tops" },
-  { id: 2, name: "Shirt-2", image: "", price: 30, category: "Tops" },
-  { id: 3, name: "Short-1", image: "", price: 25, category: "Bottoms" },
-  { id: 4, name: "Shoe-1", image: "", price: 125, category: "Footwear" },
-  { id: 5, name: "Hoodie-1", image: "", price: 60, category: "Outerwear" },
-  { id: 6, name: "Sock-1", image: "", price: 10, category: "Accessories" },
-  { id: 7, name: "Pants-1", image: "", price: 75, category: "Bottoms" },
-  { id: 8, name: "Pants-2", image: "", price: 75, category: "Bottoms" },
-  { id: 9, name: "Jacket-1", image: "", price: 125, category: "Outerwear" },
-  { id: 10, name: "Jacket-2", image: "", price: 240, category: "Outerwear" },
-  { id: 11, name: "Hat-1", image: "", price: 30, category: "Accessories" },
-  { id: 12, name: "Baby-Onsie", image: "", price: 10, category: "Kids" },
-  { id: 13, name: "Hat-2", image: "", price: 10, category: "Accessories" },
-  { id: 14, name: "Shirt-3", image: "", price: 20, category: "Tops" },
-  { id: 15, name: "Hoodie-2", image: "", price: 60, category: "Outerwear" },
-  { id: 16, name: "Shoe-2", image: "", price: 120, category: "Footwear" },
-  { id: 17, name: "Pants-3", image: "", price: 60, category: "Bottoms" },
-  { id: 18, name: "Bracelet-1", image: "", price: 5, category: "Accessories" },
-  { id: 19, name: "Bracelet-2", image: "", price: 5, category: "Accessories" },
-  { id: 20, name: "Hoodie-3", image: "", price: 70, category: "Outerwear" },
-  { id: 21, name: "Leash-2", image: "", price: 15, category: "Pets" },
-  {
-    id: 22,
-    name: "Keyboard-1",
-    image: "",
-    price: 250,
-    category: "Accessories",
-  },
-  {
-    id: 23,
-    name: "Keyboard-2",
-    image: "",
-    price: 200,
-    category: "Accessories",
-  },
-  { id: 24, name: "Leash-1", image: "", price: 12, category: "Pets" },
-];
+import { sql } from "@vercel/postgres";
+import { Product } from "./definitions";
+
+export async function fetchProducts() {
+  try {
+    console.log("Fetching products...");
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    const data = await sql<Product>`SELECT * FROM products`;
+
+    console.log("Data fetch completed after 3 seconds.");
+
+    return data.rows;
+  } catch (err) {
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch product data.");
+  }
+}
