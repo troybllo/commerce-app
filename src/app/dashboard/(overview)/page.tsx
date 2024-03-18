@@ -1,12 +1,17 @@
-export default function Page() {
+import { fetchProducts } from "@/app/lib/data";
+import { products } from "@/app/lib/placeholder-data";
+import ProductCard from "@/app/ui/dashboard/product-card";
+
+export default async function Page() {
+  const data = await fetchProducts();
+
   return (
     <div className="flex flex-row flex-wrap p-9 w-full gap-20 ">
-      <div className="w-1/4">1</div>
-      <div className="w-1/4">2</div>
-      <div className="w-1/4">3</div>
-      <div className="w-1/4">4</div>
-      <div className="w-1/4">5</div>
-      <div className="w-1/4">6</div>
+      {data.map((product) => (
+        <div key={product.id} className="w-1/4">
+          <ProductCard product={product} />
+        </div>
+      ))}
     </div>
   );
 }
