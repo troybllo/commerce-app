@@ -8,7 +8,10 @@ export default async function Page() {
   return (
     <div className="flex flex-row flex-wrap p-9 w-full gap-20 ">
       {data.map((product) => (
-        <div key={product.id} className="w-1/4">
+        <div
+          key={product.id}
+          className="w-1/4 border-white border-2 rounded-lg p-6"
+        >
           <ProductCard product={product} />
         </div>
       ))}

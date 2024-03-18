@@ -1,5 +1,11 @@
 const products = [
-  { id: 1, name: "Shirt-1", image: "", price: 50, category: "Tops" },
+  {
+    id: 1,
+    name: "Shirt-1",
+    image: "/hoodie.png",
+    price: 50,
+    category: "Tops",
+  },
   { id: 2, name: "Shirt-2", image: "", price: 30, category: "Tops" },
   { id: 3, name: "Short-1", image: "", price: 25, category: "Bottoms" },
   { id: 4, name: "Shoe-1", image: "", price: 125, category: "Footwear" },
