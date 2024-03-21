@@ -5,13 +5,11 @@ import { notFound } from "next/navigation";
 export default async function Page({ params }: { params: { id: number } }) {
   const id = params.id;
 
-  const products = await fetchProductsById(id);
+  const product = await fetchProductsById(id);
 
-  if (!products) {
+  if (!product) {
     notFound();
   }
-
-  const product = products[0];
 
   return (
     <div>

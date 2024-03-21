@@ -12,7 +12,7 @@ export default async function Page() {
           key={product.id}
           className="w-1/4 border-white border-2 rounded-lg p-6"
         >
-          <Link href="/dashboard/Product/${id}">
+          <Link href={`/dashboard/Product/${product.id}`}>
             <ProductCard product={product} />
           </Link>
         </div>

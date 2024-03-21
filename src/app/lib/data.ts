@@ -29,7 +29,7 @@ export async function fetchProductsById(id: number) {
     const ids = data.rows;
     console.log(ids);
 
-    return data.rows;
+    return ids[0];
   } catch (err) {
     console.error("Database Error:", err);
     throw new Error("Failed to fetch product data");
