@@ -35,3 +35,22 @@ export async function fetchProductsById(id: number) {
     throw new Error("Failed to fetch product data");
   }
 }
+
+export async function fetchProductsByCategory(category: string) {
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    const data =
+      await sql<Product>`SELECT id,name,image,price,category FROM products WHERE category = ${category}`;
+
+    console.log("Data fetch completed after 1 second. ");
+
+    const categories = data.rows;
+    console.log(categories);
+
+    return data.rows;
+  } catch (err) {
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch products ");
+  }
+}

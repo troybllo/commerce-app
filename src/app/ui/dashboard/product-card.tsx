@@ -21,7 +21,7 @@ export default async function ProductCard({ product }: { product: Product }) {
 
 export function Card({ product }: { product: Product }) {
   return (
-    <div key={product.id} className="flex flex-row gap-6 p-2 ml-3">
+    <div key={product.id} className="flex flex-row gap-6 p-2">
       <div className="border-b-white border-b-2 w-full">
         <Image src="/hoodie.png" width={2000} height={2000} alt="_" />
       </div>
@@ -40,6 +40,13 @@ export function Card({ product }: { product: Product }) {
         </div>
         <div className="flex bg-white text-black font-extrabold rounded-2xl ml-5 mr-0 justify-end p-1 ">
           <p>Price ${product.price}</p>
+        </div>
+        <div className="flex flex-row">
+          <div>
+            <button className="btn rounded-2xl bg-green-700 ml-5 p-2">
+              Add to Cart
+            </button>
+          </div>
         </div>
       </div>
     </div>

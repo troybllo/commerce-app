@@ -5,12 +5,12 @@ import { useState } from "react";
 
 const links = [
   { name: "All", href: "/dashboard" },
-  { name: "Hoodies", href: "/hoodies" },
-  { name: "Outerwear", href: "/outerwear" },
-  { name: "Accesories", href: "/accesories" },
-  { name: "Footwear", href: "/footwear" },
-  { name: "Kids", href: "/kids" },
-  { name: "Pets", href: "/pets" },
+  { name: "Tops", href: "/dashboard/Product/Tops" },
+  { name: "Bottoms", href: "/dashboard/Product/Bottoms" },
+  { name: "Outerwear", href: "/dashboard/Product/Outerwear" },
+  { name: "Accessories", href: "dashboard/Product/Accessories" },
+  { name: "Footwear", href: "dashboard/Product/Footwear" },
+  { name: "Pets", href: "dashboard/Product/Pets" },
 ];
 
 export default function Links() {
