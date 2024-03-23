@@ -5,7 +5,7 @@ export default async function Page() {
   const data = await fetchProducts();
 
   return (
-    <div className="bg-gray-900 rounded-2xl p-2 boorder-white border-2">
+    <div className="bg-gray-900">
       {data.map((product) => (
         <div key={product.id} className="flex flex-row">
           <Card product={product} />
