@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "../acom-logo";
 import Search from "../search";
+import Cart from "./cart/cart-button";
 
 export default function NavBar() {
   return (
@@ -17,7 +18,7 @@ export default function NavBar() {
         <Search />
       </div>
       <div>
-        <button className="border-2 border-white rounded-lg p-4 ">Cart</button>
+        <Cart quantity={1} />
       </div>
     </div>
   );

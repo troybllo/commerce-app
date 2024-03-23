@@ -40,11 +40,35 @@ async function seedProducts(client) {
   }
 }
 
+async function createCart(client) {
+  try {
+    await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+    const createTable = await client.sql`
+    CREATE TABLE IF NOT EXISTS cart (
+    id SERIAL PRIMARY KEY,
+    product_id INTEGER REFERENCES products(id),
+    quantity INTEGER,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)`;
+
+    console.log(`Created "cart" table`);
+
+    return {
+      createTable,
+    };
+  } catch (error) {
+    console.error("Error creating cart:", error);
+    throw error;
+  }
+}
+
 async function main() {
   const client = await db.connect();
 
   await seedProducts(client);
-
+  await createCart(client);
   await client.end();
 }
 

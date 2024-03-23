@@ -1,14 +1,18 @@
+"use client";
+
 import { Product } from "@/app/lib/definitions";
 import Image from "next/image";
+import { addToCart } from "./cart/handle-cart";
+import { removeFromCart } from "./cart/handle-cart";
 
-export default async function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({ product }: { product: Product }) {
   return (
     <div className="flex flex-col p-7">
       <div key={product.id} className="flex flex-col gap-6">
         <div className="border-b-white border-b-2">
           <Image src="/hoodie.png" width={700} height={700} alt="_" />
         </div>
-        <div className="flex flex-row items-center gap-4  bg-black rounded-2xl border-white border-2 justify-start p-0">
+        <div className="flex flex-row items-center gap-4  bg-black  justify-start p-0">
           <div>{product.name}</div>
           <div className="flex bg-white text-black font-extrabold rounded-2xl ml-5 mr-0 justify-end p-1 ">
             <p>Price ${product.price}</p>
@@ -19,7 +23,13 @@ export default async function ProductCard({ product }: { product: Product }) {
   );
 }
 
-export function Card({ product }: { product: Product }) {
+export function Card({
+  product,
+  quantity,
+}: {
+  product: Product;
+  quantity: number;
+}) {
   return (
     <div key={product.id} className="flex flex-row gap-6 p-2">
       <div className="border-b-white border-b-2 w-full">
@@ -42,9 +52,18 @@ export function Card({ product }: { product: Product }) {
           <p>Price ${product.price}</p>
         </div>
         <div className="flex flex-row">
-          <div>
-            <button className="btn rounded-2xl bg-green-700 ml-5 p-2">
+          <div className="flex flex-row">
+            <button
+              className="btn rounded-2xl bg-green-700 ml-5 p-2"
+              onClick={() => addToCart(product.id, 1)}
+            >
               Add to Cart
+            </button>
+            <button
+              className="btn rounded-2xl bg-red-600 ml-5 p-2"
+              onClick={() => removeFromCart(product.id)}
+            >
+              Remove From Cart
             </button>
           </div>
         </div>
