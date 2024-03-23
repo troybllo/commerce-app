@@ -55,7 +55,7 @@ export function Card({
           <div className="flex flex-row">
             <button
               className="btn rounded-2xl bg-green-700 ml-5 p-2"
-              onClick={() => addToCart(product.id, 1)}
+              onClick={() => addToCart(product.id, quantity)}
             >
               Add to Cart
             </button>
