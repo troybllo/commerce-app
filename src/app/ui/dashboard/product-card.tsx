@@ -71,3 +71,17 @@ export function Card({
     </div>
   );
 }
+
+export function CartCard({ product }: { product: Product }) {
+  return (
+    <div key={product.id} className="flex flex-row gap-6">
+      <div className="flex flex-row">
+        <Image src="/hoodie.png" alt="_" width={100} height={100} />
+        <p>{product.name}</p>
+      </div>
+      <div className="flex flex-row">
+        <p>${product.price} USD </p>
+      </div>
+    </div>
+  );
+}

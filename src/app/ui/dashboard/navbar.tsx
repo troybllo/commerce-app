@@ -1,9 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "../acom-logo";
 import Search from "../search";
 import Cart from "./cart/cart-button";
+import CartSection from "./cart/cart-section";
+import { useState } from "react";
 
 export default function NavBar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMode = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="flex flex-row justify-between p-4 items-center">
       <div className="flex flex-row items-center gap-3">
@@ -17,9 +27,13 @@ export default function NavBar() {
       <div>
         <Search />
       </div>
-      <div>
-        <Cart quantity={1} />
-      </div>
+      {!isOpen ? (
+        <div onClick={toggleMode}>
+          <Cart quantity={1} />
+        </div>
+      ) : (
+        <CartSection />
+      )}
     </div>
   );
 }
