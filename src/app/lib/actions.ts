@@ -34,3 +34,16 @@ export async function removeCart(productId: number): Promise<void> {
     console.error("Error removing info from cart:", err);
   }
 }
+
+export async function displayCart(): Promise<void> {
+  try {
+    const client = await pool.connect();
+    await client.query("BEGIN");
+    const result = await client.query(`SELECT * FROM cart`);
+    client.release();
+    return result.rows;
+  } catch (err) {
+    console.error("Error displaying the caert:", err);
+    throw err;
+  }
+}

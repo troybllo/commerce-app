@@ -1,7 +1,7 @@
 "use server";
 
-import { removeCart } from "@/app/lib/actions";
-import { addCart } from "@/app/lib/actions";
+import { removeCart, addCart, displayCart } from "@/app/lib/actions";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export async function addToCart(
   productId: number,
