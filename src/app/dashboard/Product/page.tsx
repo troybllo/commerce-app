@@ -7,9 +7,7 @@ export default async function Page() {
   return (
     <div className="bg-gray-900">
       {data.map((product) => (
-        <div key={product.id} className="flex flex-row">
-          <Card product={product} />
-        </div>
+        <div key={product.id} className="flex flex-row"></div>
       ))}
     </div>
   );
