@@ -1,28 +1,13 @@
 "use client";
 
+import { showCart } from "./handle-cart";
 import { CartCard } from "../product-card";
 import { useEffect, useState } from "react";
 
 export default function CartSection() {
-  const [cartItems, setCartItems] = useState<any[]>([]);
-
   useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        const response = await fetch("/api/cart");
-        if (response.ok) {
-          const cartItemsData = await response.json();
-          setCartItems(cartItemsData);
-        } else {
-          console.error("Failed to fetch cart items:", response.statusText);
-        }
-      } catch (error) {
-        console.error("Error fetching cart items:", error);
-      }
-    };
-
-    fetchCartItems();
-  }, []);
+    showCart(); // Call showCart directly
+  }, []); // Empty dependency array means this effect runs once on mount
 
   return (
     <div className="fixed flex flex-col right-0  bottom-0 h-full   bg-black border-l-gray-400 border-l-2 overflow-y-auto ">

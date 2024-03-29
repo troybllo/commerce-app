@@ -24,3 +24,12 @@ export async function removeFromCart(productId: number): Promise<void> {
     console.error("Error removing product from cart", error);
   }
 }
+
+export async function showCart(): Promise<void> {
+  try {
+    await displayCart();
+    console.log("Cart Displayed");
+  } catch (err) {
+    console.error("Error Display", err);
+  }
+}

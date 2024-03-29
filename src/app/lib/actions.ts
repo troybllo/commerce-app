@@ -28,22 +28,23 @@ export async function removeCart(productId: number): Promise<void> {
   try {
     const client = await pool.connect();
     await client.query("BEGIN");
-    await client.query(`DELETE FROM cart WHERE product_id = ${productId}`);
+    await client.query(`DELETE FROM cart WHERE product_id = $1`, [productId]);
+    await client.query(`COMMIT`);
+    client.release();
     console.log(`Removed ${productId} from cart `);
   } catch (err) {
     console.error("Error removing info from cart:", err);
   }
 }
 
-export async function displayCart(): Promise<void> {
+export async function displayCart(): Promise<any[]> {
   try {
     const client = await pool.connect();
-    await client.query("BEGIN");
     const result = await client.query(`SELECT * FROM cart`);
     client.release();
     return result.rows;
   } catch (err) {
     console.error("Error displaying the caert:", err);
-    throw err;
+    return [];
   }
 }
