@@ -1,31 +1,48 @@
-"use client";
-
 import { showCart } from "./handle-cart";
 import { CartCard } from "../product-card";
 import { useEffect, useState } from "react";
 
-export default function CartSection() {
+interface Props {
+  onClose: () => void;
+}
+
+export default function CartSection({ onClose }: Props) {
+  const [cartItems, setCartItems] = useState<any[]>([]);
+
   useEffect(() => {
-    showCart(); // Call showCart directly
-  }, []); // Empty dependency array means this effect runs once on mount
+    showCart();
+  }, []);
 
   return (
-    <div className="fixed flex flex-col right-0  bottom-0 h-full   bg-black border-l-gray-400 border-l-2 overflow-y-auto ">
-      <div className="flex flex-row">
-        <h1 className="font-extrabold text-[30px] p-2 mb-14">My Cart</h1>
-      </div>
-      <div className="flex flex-col gap-6 mb-10">
-        {cartItems.map((product) => (
-          <div
-            key={product.id}
-            className="flex flex-col p-3 gap-3 border-b-2 border-b-white"
+    <div className="fixed inset-y-0 right-0 w-64 bg-black text-white shadow-lg">
+      <div className="flex justify-between items-center px-4 py-3">
+        <h1 className="text-lg font-bold">My Cart</h1>
+        <button onClick={onClose}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div className="overflow-y-auto">
+        {cartItems.map((product) => (
+          <div key={product.id} className="px-4 py-3 border-b">
             <CartCard product={product} />
           </div>
         ))}
       </div>
-      <div className="flex w-full">
-        <button className="flex flex-col btn bg-white font-extrabold p-3 justify-center items-center  text-black rounded-3xl">
+      <div className="px-4 py-3 border-t">
+        <button className="w-full py-2 bg-white text-black font-semibold rounded-lg">
           Proceed to Checkout
         </button>
       </div>

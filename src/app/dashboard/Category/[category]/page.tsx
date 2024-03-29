@@ -1,4 +1,4 @@
-import { fetchProducts, fetchProductsByCategory } from "@/app/lib/data";
+import { fetchProductsByCategory } from "@/app/lib/data";
 import { notFound } from "next/navigation";
 import ProductCard from "@/app/ui/dashboard/product-card";
 import Link from "next/link";
@@ -10,7 +10,6 @@ export default async function Page({
 }) {
   const { category } = params;
 
-  // Fetch products based on the selected category
   const products = await fetchProductsByCategory(category);
 
   if (!products) {

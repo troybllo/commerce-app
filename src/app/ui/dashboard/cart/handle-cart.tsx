@@ -1,14 +1,12 @@
 "use server";
 
 import { removeCart, addCart, displayCart } from "@/app/lib/actions";
-import { NextApiRequest, NextApiResponse } from "next";
 
 export async function addToCart(
   productId: number,
   quantity: number,
 ): Promise<void> {
   try {
-    // Call the addToCart function with the product ID, quantity, and user ID
     await addCart(productId, quantity);
     console.log(`Product with ID ${productId} added to the cart.`);
   } catch (error) {

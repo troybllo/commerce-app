@@ -11,7 +11,7 @@ export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMode = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   return (
@@ -27,13 +27,10 @@ export default function NavBar() {
       <div>
         <Search />
       </div>
-      {!isOpen ? (
-        <div onClick={toggleMode}>
-          <Cart quantity={1} />
-        </div>
-      ) : (
-        <CartSection />
-      )}
+      <div onClick={toggleMode}>
+        <Cart quantity={1} />
+      </div>
+      {isOpen && <CartSection onClose={toggleMode} />}
     </div>
   );
 }
