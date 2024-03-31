@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "../acom-logo";
 import Search from "../search";
@@ -11,18 +13,6 @@ export default function NavBar() {
 
   const [cartQuantity, setCartQuantity] = useState<number>(0);
 
-  useEffect(() => {
-    fetchCartQuantity();
-  }, []);
-
-  const fetchCartQuantity = async () => {
-    try {
-      const result = await quantityCart();
-      setCartQuantity(result);
-    } catch (error) {
-      console.error(error);
-    }
-  };
   const toggleMode = () => {
     setIsOpen((prev) => !prev);
   };
