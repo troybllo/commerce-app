@@ -4,7 +4,6 @@ import { Product } from "@/app/lib/definitions";
 import Image from "next/image";
 import { addToCart } from "./cart/handle-cart";
 import { removeFromCart } from "./cart/handle-cart";
-import { quantityCart } from "@/app/lib/actions";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (

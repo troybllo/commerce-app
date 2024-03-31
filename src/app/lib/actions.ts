@@ -49,17 +49,14 @@ export async function displayCart(): Promise<any[]> {
   }
 }
 
-export async function quantityCart(): Promise<void> {
+export async function quantityCart(): Promise<number> {
   try {
     const client = await pool.connect();
-
-    await client.query("BEGIN");
     const result = await client.query(`SELECT COUNT(*) FROM cart`);
-
-    await client.query(`COMMIT`);
     client.release();
-    return result;
+    return parseInt(result.rows[0].count);
   } catch (err) {
     console.error(err);
+    return 0;
   }
 }

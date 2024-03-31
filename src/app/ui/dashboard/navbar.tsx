@@ -1,15 +1,28 @@
-"use client";
-
 import Link from "next/link";
 import Logo from "../acom-logo";
 import Search from "../search";
 import Cart from "./cart/cart-button";
 import CartSection from "./cart/cart-section";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { quantityCart } from "@/app/lib/actions";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [cartQuantity, setCartQuantity] = useState<number>(0);
+
+  useEffect(() => {
+    fetchCartQuantity();
+  }, []);
+
+  const fetchCartQuantity = async () => {
+    try {
+      const result = await quantityCart();
+      setCartQuantity(result);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const toggleMode = () => {
     setIsOpen((prev) => !prev);
   };
@@ -28,9 +41,11 @@ export default function NavBar() {
         <Search />
       </div>
       <div onClick={toggleMode}>
-        <Cart quantity={1} />
+        <Cart quantity={cartQuantity} />
       </div>
-      {isOpen && <CartSection onClose={toggleMode} />}
+      {isOpen && (
+        <CartSection onClose={toggleMode} cartQuantity={cartQuantity} />
+      )}
     </div>
   );
 }

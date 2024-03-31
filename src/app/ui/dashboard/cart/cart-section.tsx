@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 
 interface Props {
   onClose: () => void;
+  cartQuantity: number;
 }
 
-export default function CartSection({ onClose }: Props) {
+export default function CartSection({ onClose, cartQuantity }: Props) {
   const [cartItems, setCartItems] = useState<any[]>([]);
 
   useEffect(() => {
