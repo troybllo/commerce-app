@@ -54,3 +54,16 @@ export async function fetchProductsByCategory(category: string) {
     throw new Error("Failed to fetch products ");
   }
 }
+
+export async function fetchFilteredProducts(query: string) {
+  try {
+    const products = await sql<Product>`
+    SELECT name,id,price,category
+    FROM products
+    WHERE name ILIKE ${`%${query}%`}`;
+    return products.rows;
+  } catch (err) {
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch products.");
+  }
+}

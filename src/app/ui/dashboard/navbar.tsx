@@ -28,7 +28,7 @@ export default function NavBar() {
         <Link href={""}>Accesories</Link>
       </div>
       <div>
-        <Search />
+        <Search placeholder="Search for Products" />
       </div>
       <div onClick={toggleMode}>
         <Cart quantity={cartQuantity} />
