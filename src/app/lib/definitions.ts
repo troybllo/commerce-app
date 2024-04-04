@@ -6,10 +6,10 @@ export type Product = {
   category: string;
 };
 
-export interface Cart {
+export type Cart = {
   id: number;
   productId: number;
   quantity: number;
   created_at: Date;
   updated_at: Date;
-}
+};

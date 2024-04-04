@@ -1,19 +1,11 @@
-import { showCart } from "./handle-cart";
-import { CartCard } from "../product-card";
-import { useEffect, useState } from "react";
+import CartProduct from "./cart-products";
 
 interface Props {
   onClose: () => void;
   cartQuantity: number;
 }
 
-export default function CartSection({ onClose, cartQuantity }: Props) {
-  const [cartItems, setCartItems] = useState<any[]>([]);
-
-  useEffect(() => {
-    showCart();
-  }, []);
-
+export default function CartSection({ onClose }: Props) {
   return (
     <div className="fixed inset-y-0 right-0 w-64 bg-black text-white shadow-lg">
       <div className="flex justify-between items-center px-4 py-3">
@@ -35,13 +27,7 @@ export default function CartSection({ onClose, cartQuantity }: Props) {
           </svg>
         </button>
       </div>
-      <div className="overflow-y-auto">
-        {cartItems.map((product) => (
-          <div key={product.id} className="px-4 py-3 border-b">
-            <CartCard product={product} />
-          </div>
-        ))}
-      </div>
+      <CartProduct />
       <div className="px-4 py-3 border-t">
         <button className="w-full py-2 bg-white text-black font-semibold rounded-lg">
           Proceed to Checkout

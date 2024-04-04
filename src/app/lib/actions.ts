@@ -37,15 +37,16 @@ export async function removeCart(productId: number): Promise<void> {
   }
 }
 
-export async function displayCart(): Promise<any[]> {
+export async function displayCart(): Promise<void> {
   try {
     const client = await pool.connect();
-    const result = await client.query(`SELECT * FROM cart`);
+    const result = await client.query(
+      `SELECT products.id,products.name,products.price,products.category FROM products INNER JOIN cart ON products.id = cart.product_id`,
+    );
     client.release();
     return result.rows;
   } catch (err) {
     console.error("Error displaying the caert:", err);
-    return [];
   }
 }
 

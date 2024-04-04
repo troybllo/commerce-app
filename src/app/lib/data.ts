@@ -67,3 +67,23 @@ export async function fetchFilteredProducts(query: string) {
     throw new Error("Failed to fetch products.");
   }
 }
+
+export async function fetchCartItems() {
+  try {
+    console.log("Fetching Products in Cart");
+    // Simulate delay (remove this line in production)
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    const cart = await sql<Product>`
+      SELECT products.id, products.name, products.price, products.category 
+      FROM products 
+      INNER JOIN cart ON products.id = cart.product_id
+    `;
+
+    console.log("Fetched cart items:", cart.rows);
+    return cart.rows;
+  } catch (err) {
+    console.error("Database Error: ", err);
+    throw new Error("Failed to fetch Cart Items");
+  }
+}
