@@ -27,7 +27,6 @@ export default function CartSection({ onClose }: Props) {
           </svg>
         </button>
       </div>
-      <CartProduct />
       <div className="px-4 py-3 border-t">
         <button className="w-full py-2 bg-white text-black font-semibold rounded-lg">
           Proceed to Checkout

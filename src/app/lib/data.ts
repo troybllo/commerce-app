@@ -1,5 +1,5 @@
 import { sql } from "@vercel/postgres";
-import { Product } from "./definitions";
+import { Cart, Product } from "./definitions";
 
 export async function fetchProducts() {
   try {
@@ -71,14 +71,11 @@ export async function fetchFilteredProducts(query: string) {
 export async function fetchCartItems() {
   try {
     console.log("Fetching Products in Cart");
-    // Simulate delay (remove this line in production)
-    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     const cart = await sql<Product>`
-      SELECT products.id, products.name, products.price, products.category 
+    SELECT products.id, products.name, products.price, products.category 
       FROM products 
-      INNER JOIN cart ON products.id = cart.product_id
-    `;
+      INNER JOIN cart ON products.id = cart.product_id`;
 
     console.log("Fetched cart items:", cart.rows);
     return cart.rows;

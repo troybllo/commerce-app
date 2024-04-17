@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/app/lib/data";
 import { CartCard } from "../product-card";
@@ -7,22 +9,22 @@ export default function CartProduct() {
   const [cartItems, setCartItems] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchItems = async () => {
+    async function fetchItems() {
       try {
         const items = await fetchCartItems();
         setCartItems(items);
       } catch (error) {
         console.error("Error fetching cart items:", error);
-        // Optionally, handle the error or set a default value for cartItems
       }
-    };
+    }
 
     fetchItems();
-  }, []);
+  }, []); // Fetch cart items when the component mounts
+
   return (
-    <div className="overflow-y-auto">
+    <div>
       {cartItems.map((product) => (
-        <div key={product.id} className="px-4 py-3 border-b">
+        <div key={product.id}>
           <CartCard product={product} />
         </div>
       ))}

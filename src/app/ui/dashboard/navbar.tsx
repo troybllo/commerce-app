@@ -6,6 +6,14 @@ import Search from "../search";
 import Cart from "./cart/cart-button";
 import CartSection from "./cart/cart-section";
 import { useState } from "react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,12 +37,19 @@ export default function NavBar() {
       <div>
         <Search placeholder="Search for Products" />
       </div>
-      <div onClick={toggleMode}>
-        <Cart quantity={cartQuantity} />
-      </div>
-      {isOpen && (
-        <CartSection onClose={toggleMode} cartQuantity={cartQuantity} />
-      )}
+      <Sheet>
+        <div onClick={toggleMode}>
+          <SheetTrigger>
+            <Cart quantity={cartQuantity} />
+          </SheetTrigger>{" "}
+        </div>
+        <SheetContent>
+          {" "}
+          {isOpen && (
+            <CartSection onClose={toggleMode} cartQuantity={cartQuantity} />
+          )}
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
