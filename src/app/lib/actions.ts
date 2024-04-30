@@ -2,8 +2,7 @@ const { Pool } = require("pg");
 require("dotenv").config();
 
 const pool = new Pool({
-  connectionString:
-    "postgres://default:ztblVTM1j7JP@ep-cool-wind-a4yctwdr-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require",
+  connectionString: process.env.POSTGRES_URL,
 });
 
 export async function addCart(

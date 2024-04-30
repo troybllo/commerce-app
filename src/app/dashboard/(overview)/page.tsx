@@ -2,6 +2,12 @@ import { fetchFilteredProducts, fetchProducts } from "@/app/lib/data";
 import ProductCard from "@/app/ui/dashboard/product-card";
 import Link from "next/link";
 import { Suspense } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Products",
+  description: "...",
+};
 
 export default async function Page({
   searchParams,
